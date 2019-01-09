@@ -1,0 +1,143 @@
+
+body {
+    /*移动端字体设置最佳实践*/
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC","Helvetica Neue",STHeiti,"Microsoft Yahei",Tahoma,Simsun,sans-serif;
+   
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
+}
+* {
+   -webkit-box-sizing: border-box;
+    box-sizing: border-box; 
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  
+::-webkit-scrollbar  
+{  
+    width: 6px;  
+    height: 6px;  
+    background-color: #908f8d;  
+}  
+  
+/*定义滚动条轨道 内阴影+圆角*/  
+::-webkit-scrollbar-track  
+{  
+    border-radius: 10px;  
+    background-color: #908f8d;  
+}  
+  
+/*定义滑块 内阴影+圆角*/  
+::-webkit-scrollbar-thumb  
+{  
+    border-radius: 10px;  
+    background-color: #098bcb;  
+}
+
+/* 去掉点击链接和文本框对象时默认的灰色半透明覆盖层(iOS)或者虚框(Android) */
+a,
+button,
+input,
+textarea {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* 禁用长按页面时的弹出菜单(iOS下有效) ,img和a标签都要加 */
+img,
+a {
+    -webkit-touch-callout: none;
+}
+
+/* 清除输入框内阴影 */
+input,
+select,
+textarea {
+    border: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+}
+
+/*隐藏number右边上下箭头*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.scroll {
+	-webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+}
+.ellipsis {
+	word-wrap: normal; /* for IE */
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+/* Retina屏 1px问题 start */
+@mixin border-bottom-1px($color) {
+    position: relative;
+
+    &:after {
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        border-top: 1px solid $color;
+        content: ' ';
+    }
+}
+@media (-webkit-min-device-pixel-ratio: 1.5),
+(min-device-pixel-ratio: 1.5) {
+    .border-bottom-1px {
+        &::after {
+            -webkit-transform: scaleY(0.7);
+            transform: scaleY(0.7);
+        }
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-device-pixel-ratio: 2) {
+    .border-bottom-1px {
+        &::after {
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+        }
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 3),
+(min-device-pixel-ratio: 3) {
+    .border-bottom-1px {
+        &::after {
+            -webkit-transform: scaleY(0.3);
+            transform: scaleY(0.3);
+        }
+    }
+}
+/* 1px问题 end */
+
+
+/*浮动*/
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.cf {
+    zoom: 1;
+}
+.cf:after {
+    content: '';
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 0px;
+}
