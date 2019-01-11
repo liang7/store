@@ -4,7 +4,7 @@ const folderPath = path.join(__dirname, './') // 文件夹路径
 const folderName = folderPath.substr(folderPath.lastIndexOf('\\')+1) // 文件夹名称
 const minSize = 0 // 要显示的最小的文件(kb)
 const fileName = 'size.txt' // 生产的文件名称
-let extname = ['jpg','png','js'] //遍历指定拓展名的文件
+const exts = ['.png', '.js'] //遍历的后缀名, 为空则遍历所有文件
 
 // 遍历所有文件夹，获取文件信息 
 function geFileList(filePath) {
@@ -20,7 +20,8 @@ function geFileList(filePath) {
   })
 }
 
-//遍历读取文件 
+//遍历读取文件
+const extsLen = (exts||[]).length
 function readFile(filePath, filesList) {
   let files = fs.readdirSync(filePath) //需要用到同步读取
   files.forEach(file => {
@@ -33,7 +34,7 @@ function readFile(filePath, filesList) {
     // 后缀名
     let ext = path.extname(file).toLowerCase()
     // 过滤后缀名
-    if (extname && (!ext || extname.indexOf(ext+'.') === -1)) return
+    if (extsLen && (!ext || !exts.includes(ext))) return
 
     filesList.push({
       name: file, //文件名
@@ -64,10 +65,6 @@ function writeFile(data) {
 }
 
 (() => {
-
-  extname = extname.map(item => {
-    return `.${item.toLowerCase()}`
-  }).join('') + '.'
 
   const filesList = geFileList(folderPath)
   // 过滤数组
