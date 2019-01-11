@@ -33,7 +33,7 @@ function readFile(filePath, filesList) {
     // 后缀名
     let ext = path.extname(file).toLowerCase()
     // 过滤后缀名
-    if (extname && (!ext || extname.indexOf(ext) === -1)) return
+    if (extname && (!ext || extname.indexOf(ext+'.') === -1)) return
 
     filesList.push({
       name: file, //文件名
@@ -67,7 +67,7 @@ function writeFile(data) {
 
   extname = extname.map(item => {
     return `.${item.toLowerCase()}`
-  }).join('')
+  }).join('') + '.'
 
   const filesList = geFileList(folderPath)
   // 过滤数组
