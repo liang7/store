@@ -1,0 +1,10 @@
+mock/
+coverage/
+v2/
+node_modules/
+public/
+src/**/*.ejs
+src/core/charts/**/*.js
+/bin/**/*.js
+/src/iconfont.js
+/dist/**/*.js
